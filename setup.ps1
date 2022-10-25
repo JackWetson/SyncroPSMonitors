@@ -3,3 +3,13 @@ New-Item -ItemType Directory -Force -Path C:\Monitors\
 Invoke-WebRequest -Uri "https://github.com/JackWetson/SyncroPSMonitors/releases/latest/download/release.zip" -OutFile "C:\Monitors\latest.zip"
 Expand-Archive "C:\Monitors\latest.zip" -DestinationPath "C:\Monitors" -Force
 Remove-Item "C:\Monitors\latest.zip"
+
+## Create Scheduled Tasks
+
+# Create Folder
+$scheduleObject = New-Object -ComObject schedule.service
+$scheduleObject.connect()
+$rootFolder = $scheduleObject.GetFolder("\")
+$rootFolder.CreateFolder("Atema")
+
+# Daily Update
